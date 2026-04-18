@@ -66,7 +66,8 @@ public:
     for(int i = 0; i < assoc; i++){
       if(entries[index][i].get_valid()&&
          entries[index][i].get_tag() == tag){
-          update_lru(index, i);
+
+          entries[index][i].set_ref(counter++);
 
           out << addr << " : HIT" << endl;
           return;
@@ -78,6 +79,8 @@ public:
     entries[index][replace].set_valid(true);
     entries[index][replace].set_tag(tag);
 
+    entries[index][replace].set_ref(counter++);
+
     out << addr << " : MISS" << endl;
   }
   
@@ -86,6 +89,7 @@ private:
   unsigned num_entries;
   int num_sets;
   Entry **entries;
+  int counter;
 
   int get_index(unsigned long addr){
     return addr % num_sets;
@@ -100,21 +104,15 @@ private:
       if(!entries[index][i].get_valid())
         return i;
       }
+
       int lru = 0;
+      
       for(int i = 1; i < assoc; i++){
-        if(entries[index][i].get_ref() > entries[index][lru].get_ref())
+        if(entries[index][i].get_ref() < entries[index][lru].get_ref())
           lru = i;
       }
       return lru;
     }
-
-  void update_lru(int index, int used){
-    for(int i = 0; i < assoc; i++){
-      if(entries[index][i].get_valid())
-        entries[index][i].set_ref(entries[index][i].get_ref() + 1);
-    }
-    entries[index][used].set_ref(0);
-  }
 };
 
 int main(int argc, char* argv[]){
