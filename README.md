@@ -10,15 +10,15 @@ Original Version:
 To compile: g++ cache_sim.cpp -o cache_sim
 
 To execute: ./cache_sim (num_entries)(associativity)(input_memory_reference_file)
-    - num_entries: total number of entries,
-    - associativity: associativity of the cache to be simulated
-    - input_memory_reference_file: exact file name of file that contains list of memory address references separated by spaces.
+- num_entries: total number of entries,
+- associativity: associativity of the cache to be simulated
+- input_memory_reference_file: exact file name of file that contains list of memory address references separated by spaces.
 
 Extra Credit Version:
 
 To compile: g++ cache_sim_ex.cpp -o cache_sim_ex
 
 To execute: ./cache_sim_ex (num_entries)(associativity)(input_memory_reference_file)
-    - num_entries: total number of entries,
-    - associativity: associativity of the cache to be simulated
-    - input_memory_reference_file: exact file name of file that contains list of memory address references separated by spaces.
+- num_entries: total number of entries,
+- associativity: associativity of the cache to be simulated
+- input_memory_reference_file: exact file name of file that contains list of memory address references separated by spaces.
